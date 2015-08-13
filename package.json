@@ -1,0 +1,24 @@
+{
+  "name": "circuit-breaker",
+  "version": "1.0.0",
+  "description": "A utility for logically branching based on failure rates and/or counts",
+  "main": "CircuitBreaker.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tinder/circuit-breaker.git"
+  },
+  "author": "Tom Lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tinder/circuit-breaker/issues"
+  },
+  "homepage": "https://github.com/Tinder/circuit-breaker",
+  "devDependencies": {
+    "should": "^7.0.4",
+    "should-sinon": "0.0.3",
+    "sinon": "^1.15.4"
+  }
+}

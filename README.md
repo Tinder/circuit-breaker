@@ -9,7 +9,7 @@ A utility for logically branching based on failure rates and/or counts
 var breaker = new CircuitBreaker({
   failure_rate: 0.5,
   failure_count: 10,
-  timeout: 30*1000
+  reset_timeout: 30*1000
 });
 
 if (breaker.closed()) {
@@ -30,7 +30,7 @@ if (breaker.closed()) {
 var breaker = new CircuitBreaker({
   failure_rate: 0.5,
   failure_count: 10,
-  timeout: 30*1000
+  reset_timeout: 30*1000
 });
 
 if (breaker.closed()) {
@@ -45,7 +45,7 @@ if (breaker.closed()) {
 var breaker = new CircuitBreaker({
   failure_rate: 0.5,
   failure_count: 10,
-  timeout: 30*1000,
+  reset_timeout: 30*1000,
   fn: doSomething
 });
 

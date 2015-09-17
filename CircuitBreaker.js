@@ -1,9 +1,14 @@
+var util = require('util');
+var EventEmitter = require('events').EventEmitter;
+
 CircuitBreaker.states = {
   open: 1,
   closed: 2
 };
 
 function CircuitBreaker(options) {
+  EventEmitter.call(this);
+
   options = options || {};
 
   this.fn = options.fn || null;
@@ -14,9 +19,12 @@ function CircuitBreaker(options) {
   this.reset();
 }
 
+util.inherits(CircuitBreaker, EventEmitter);
+
 CircuitBreaker.prototype.trip = function() {
   this.state = CircuitBreaker.states.open;
   this.start = Date.now();
+  this.emit('open');
 };
 
 CircuitBreaker.prototype.reset = function() {
@@ -24,6 +32,7 @@ CircuitBreaker.prototype.reset = function() {
   this.failed = 0;
   this.state = CircuitBreaker.states.closed;
   this.start = Date.now();
+  this.emit('close');
 };
 
 CircuitBreaker.prototype.pass = function() {
@@ -68,7 +77,7 @@ CircuitBreaker.prototype.call = function(/* args */) {
     if (has_callback) return last(err);
     return err;
   }
-}
+};
 
 CircuitBreaker.prototype.update = function() {
   var should_be_closed = this.detect();
